@@ -1,4 +1,5 @@
 [alias]
+    addp = add --patch
     # from: https://gist.github.com/3v1n0/4b6e7dc40e7f8b1c38bccde98ed9ec79
     added = diff --cached
     br = branch
