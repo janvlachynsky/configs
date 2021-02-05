@@ -1,0 +1,93 @@
+[alias]
+    # from: https://gist.github.com/3v1n0/4b6e7dc40e7f8b1c38bccde98ed9ec79
+    added = diff --cached
+    br = branch
+    cij = commit
+    co = checkout
+    contains = branch --contains
+    di = diff
+    diffc = diff --cached
+    discard = checkout --
+    distclean = "clean -dxfi"
+    exec = "!exec "
+    files = log --pretty='format:%h - %ad' --name-status --relative-date
+    fixup = commit --all --amend --reuse-message=HEAD
+    follow = log --follow --patch-with-stat --ignore-all-space --
+    graph-pretty = log --all --graph --pretty --oneline --decorate
+    graph = log --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit --date=relative --all
+    glog = log --graph --decorate=full
+    last = log -1 HEAD
+    last-ten = log -n 10 --first-parent --oneline
+    logall = log --branches=*
+    restore = "checkout --"
+    revert = "checkout --"
+    revno = !git rev-list --all | wc -l
+    rmmerged = "!git branch --merged | grep --verbose '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+    showtag = show-ref
+    smerge = "merge --no-ff --no-commit"
+    st = status
+    stat = status
+    tip = rev-parse --verify HEAD
+    unadd = reset HEAD --
+    uncommit = "!bash -c 'echo "Uncommittng: " && git rev-list --format=%B --max-count=1 HEAD && read -p "[Y/N] " -N 1 reply && ([ "$reply" == "Y" ] || [ "$reply" == "y" ]) && echo && git reset --soft HEAD^'"
+    uncommit-quick = reset --soft HEAD^
+    undo = git revert --strategy resolve
+    unstage = reset HEAD --
+    vis = !gitg
+    visual = !gitg
+
+    # from: https://github.com/gggritso/dotfiles/edit/master/gitconfig.symlink
+    comit = commit
+    commmit = commit
+    unstage = reset -q HEAD --
+    discard = checkout --
+    nevermind = !git reset --hard HEAD && git clean -d -f
+   
+    save = commit -m
+    resave = commit --amend -m
+    fold = commit --amend --no-edit
+    invert = revert
+    last = log -1 HEAD --format=format:"%Cred%H"
+    copy-last-hash = !git last | pbcopy
+    summary = status -u -s
+    graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
+    history = log -10 --format=format:'%Cgreen%h %Creset%s (%aN, %ar)'
+    hist = history
+    new-branch = checkout -b
+    rename-branch = branch -m
+    delete-branch = branch -D
+    branches = "!git branch | ag -v '\\b(staging|master)\\b'"
+    recent-branches = branch -a --sort=committerdate
+    tags = tag
+    stashes = stash list
+    prestage = diff -w
+    precommit = diff -w --cached
+    remotes = remote -v
+    move = mv
+    remove = rm
+    unmerged = branch --no-merged
+    unstash = stash pop
+    what = show
+    show-last = show HEAD
+    untrack = rm -r --cached
+    rewrite = rebase -i
+    back = checkout "-"
+    contributors = shortlog -s -n --no-merges
+    file-trail = log --follow -p -w
+    merge-trail = log --ancestry-path --merges
+    unmerged-files = diff --name-only
+    patch = add --patch
+    tuck = stash save -u
+    current-branch = rev-parse --abbrev-ref HEAD
+    untuck = stash pop "stash@{0}"
+    boop = "!f() { B=$(git current-branch); git commit --allow-empty -m 'Boop!'; git push origin $B; }; f"
+    aliases = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\:\\ /
+    autotrack = "!f() { B=$(git current-branch); git branch --set-upstream-to=origin/$B; }; f"
+    into = "!f() { B=$(git current-branch); git checkout $1; git pull; git merge $B --no-edit; }; f"
+    into-staging = "!f() { B=$(git current-branch); git checkout staging; git pull; git merge $B --no-edit; }; f"
+    into-master = "!f() { B=$(git current-branch); git checkout master; git pull; git merge $B --no-edit; }; f"
+    onto = "!f() { B=$(git current-branch); git checkout master; git pull; git checkout $B; git rebase -i $1; }; f"
+    work-log = !git log --reverse master...HEAD --format=format:'- %w(0,0,4)%B'
+    submit = !git push && git autotrack
+    whodunit = blame -wMC
+    axe = log --reverse -p -w -S
